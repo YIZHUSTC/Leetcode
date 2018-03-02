@@ -1,0 +1,15 @@
+hadoop com.sun.tools.javac.Main *.java
+jar cf SentimentAnalysis.jar *.class
+hdfs dfs -rm -r /output/
+hadoop jar SentimentAnalysis.jar SentimentAnalysis /input/Lyrics.csv /output /input/emotionCategory.txt
+hdfs dfs -cat /output/*
+
+hadoop com.sun.tools.javac.Main *.java
+jar cf SentimentAnalysis.jar *.class
+hadoop jar SentimentAnalysis.jar JSONConverter /output/part-r-00000 /JSON
+
+
+
+hdfs dfs -rm -r /output/
+hadoop jar SentimentAnalysis.jar SentimentAnalysis input/Folk.csv /output input/emotionCategory.txt
+hdfs dfs -cat /output/*
